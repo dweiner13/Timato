@@ -13,6 +13,7 @@
 		372B3836242E971000A2C3DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372B3835242E971000A2C3DE /* Preview Assets.xcassets */; };
 		372B3839242E971000A2C3DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372B3837242E971000A2C3DE /* Main.storyboard */; };
 		372B3845242E971100A2C3DE /* timerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372B3844242E971100A2C3DE /* timerTests.swift */; };
+		372B3850242F939700A2C3DE /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372B384F242F939700A2C3DE /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		372B3840242E971100A2C3DE /* timerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		372B3844242E971100A2C3DE /* timerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerTests.swift; sourceTree = "<group>"; };
 		372B3846242E971100A2C3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		372B384F242F939700A2C3DE /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				372B382E242E970D00A2C3DE /* AppDelegate.swift */,
 				372B3830242E970D00A2C3DE /* ContentView.swift */,
+				372B384F242F939700A2C3DE /* NotificationManager.swift */,
 				372B3832242E971000A2C3DE /* Assets.xcassets */,
 				372B3837242E971000A2C3DE /* Main.storyboard */,
 				372B383A242E971000A2C3DE /* Info.plist */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372B3850242F939700A2C3DE /* NotificationManager.swift in Sources */,
 				372B3831242E970D00A2C3DE /* ContentView.swift in Sources */,
 				372B382F242E970D00A2C3DE /* AppDelegate.swift in Sources */,
 			);

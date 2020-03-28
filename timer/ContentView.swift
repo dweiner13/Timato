@@ -12,8 +12,7 @@ struct ContentView: View {
     @State private var currentDate = Date()
     @State private var startDate = Date()
     @State private var isRunning = false
-
-    private let timerLength: TimeInterval = 5
+    @State private var timerLength: TimeInterval = 60 * 25
 
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
@@ -21,31 +20,50 @@ struct ContentView: View {
 
     var body: some View {
         return VStack {
-            Text(formatter.string(from: timerLength - currentDate.timeIntervalSince(startDate)) ?? "nil")
-                .font(Font.largeTitle.monospacedDigit())
-                .fontWeight(.heavy)
-                .onReceive(timer) { (input) in
-                    if self.timerLength - self.currentDate.timeIntervalSince(self.startDate) <= 0 {
-                        self.stopTimer()
+            HStack {
+                Text(formatter.string(from: timerLength - currentDate.timeIntervalSince(startDate)) ?? "nil")
+                    .font(Font.largeTitle.monospacedDigit())
+                    .fontWeight(.heavy)
+                    .onReceive(timer) { (input) in
+                        if self.timerLength - self.currentDate.timeIntervalSince(self.startDate) <= 0 {
+                            self.stopTimer()
+                        }
+                        if self.isRunning {
+                            self.currentDate = input
+                        }
                     }
-                    if self.isRunning {
-                        self.currentDate = input
-                    }
-                }
-            Button(action: pressButton) {
-                isRunning ? Text("Reset timer") : Text("Start timer")
+                isRunning ? nil : Stepper("", value: $timerLength, in: 60...(60 * 60), step: 60)
             }
+            HStack {
+                Button(action: pressBigButton) {
+                    isRunning ? Text("Reset") : Text("Start")
+                }
+            }
+            Divider()
+                .padding(.vertical, 15.0)
+            HStack {
+                Text("Set to:")
+                Button(action: { self.timerLength = 60 * 25 }) {
+                    Text("25 minutes")
+                }
+                Button(action: { self.timerLength = 60 * 5 }) {
+                    Text("5 minutes")
+                }
+            }
+            .padding(0.0)
+                .disabled(isRunning)
         }
-            .frame(width: 300, height: 300)
+        .frame(width: 250, height: 300.0)
     }
 
-    private func stopTimer() {
+    func stopTimer() {
         startDate = Date()
         isRunning = false
+        NotificationManager.shared.sendLocalNotification(title: "Timer finished!")
     }
 
-    private func pressButton() {
-        isRunning = true
+    func pressBigButton() {
+        isRunning = !isRunning
         startDate = Date()
     }
 }

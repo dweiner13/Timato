@@ -14,26 +14,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
 
+    var contentView: ContentView?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        contentView = ContentView()
 
         // Create the window and set the content view. 
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView, .utilityWindow],
             backing: .buffered, defer: false)
         window.center()
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
+        window.delegate = self
+        window.title = "Timer"
+
+        _ = NotificationManager.shared.requestAccess()
+            .print()
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    @IBAction func startTimer(_ sender: Any) {
+        contentView?.pressBigButton()
     }
 
+    @IBAction func setTo25Minutes(_ sender: Any) {
+    }
 
+    @IBAction func setTo5Minutes(_ sender: Any) {
+    }
+
+}
+
+extension AppDelegate: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        NSApp.terminate(nil)
+    }
 }
 
