@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
         window.delegate = self
-        window.title = "Timer"
+        window.title = "Timato"
 
         _ = NotificationManager.shared.requestAccess()
             .print()
